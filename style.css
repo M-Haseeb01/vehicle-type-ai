@@ -1,0 +1,191 @@
+/* === Global Resets & Base Styles === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; /* Ensure body takes full viewport height */
+  margin: 0; /* Remove default margin */
+  padding: 20px;
+  background-color: #f4f7f6; /* Softer background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font stack */
+  color: #333;
+  line-height: 1.6;
+}
+
+/* === Main Container === */
+.app-container {
+  width: 100%;
+  max-width: 500px; /* Max width for content area */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* === Typography === */
+h1 {
+  color: #2c3e50; /* Darker, more professional blue */
+  font-size: 2em; /* Responsive font size */
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* === Canvas Area === */
+#canvasWrapper {
+  position: relative;
+  border: 2px dashed #ced4da; /* Lighter, more subtle dashed border */
+  width: 300px;
+  height: 300px;
+  margin: 20px 0;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* Indicate it's clickable for upload */
+}
+
+#canvasWrapper.active {
+  border-color: #007bff; /* Primary blue for active state */
+  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.2); /* Enhanced shadow for active state */
+}
+
+canvas {
+  display: block; /* Remove extra space below canvas */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 6px; /* Match wrapper's rounding if image touches edge */
+}
+
+.drop-message {
+  position: absolute;
+  color: #6c757d; /* Softer gray for drop message */
+  font-size: 0.9em;
+  text-align: center;
+  pointer-events: none;
+  padding: 10px; /* Add some padding so text doesn't touch border */
+}
+
+/* === Controls Area === */
+.controls {
+  display: flex; /* Use flex for better button alignment */
+  gap: 10px; /* Space between buttons */
+  margin-bottom: 20px; /* Increased margin */
+}
+
+button {
+  padding: 10px 20px; /* More generous padding */
+  border: none;
+  border-radius: 6px; /* Slightly more rounded */
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-weight: 600; /* Bolder font weight */
+  font-size: 0.95em;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px); /* Slight lift effect */
+}
+
+button:active {
+  background-color: #004085; /* Even darker for active state */
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Secondary button style (e.g., for Clear) */
+button#clearBtn {
+  background-color: #6c757d; /* Gray for secondary action */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+button#clearBtn:hover {
+  background-color: #5a6268;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+button#clearBtn:active {
+  background-color: #495057;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+/* === Result Area === */
+#result {
+  font-size: 1.1em; /* Slightly larger result text */
+  font-weight: 600;
+  min-height: 28px; /* Adjusted min-height */
+  text-align: center;
+  margin-bottom: 20px; /* Increased margin */
+  padding: 10px 15px;
+  background-color: #e9ecef; /* Light background for result area */
+  border-radius: 6px;
+  color: #495057; /* Darker text for better contrast on light bg */
+  width: 100%;
+  max-width: 300px; /* Consistent with canvas width */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+/* === Loading Indicator === */
+#loading {
+  position: absolute;
+  top: 50%; /* Center spinner */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 10; /* Ensure spinner is on top */
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 40px; /* Slightly larger spinner */
+  height: 40px;
+  border-radius: 50%;
+  border-left-color: #007bff; /* Use primary color */
+  animation: spin 0.8s linear infinite; /* Faster spin */
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* === Hidden File Input === */
+#fileInput {
+  display: none;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.8em;
+  }
+  #canvasWrapper {
+    width: 90vw; /* Use viewport width */
+    height: 90vw; /* Maintain square aspect ratio */
+  }
+  .controls {
+    flex-direction: column; /* Stack buttons on small screens */
+    width: 90vw;
+  }
+  button {
+    width: 100%; /* Full width buttons in column */
+  }
+  #result {
+    max-width: 90vw;
+    font-size: 1em;
+  }
+}
