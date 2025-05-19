@@ -239,5 +239,5 @@ print(f"\nTo download the TFLite model and class names from Colab:")
 print(f"1. Click on the 'Files' icon (folder icon) in the left sidebar of Colab.")
 print(f"2. Navigate to the '{tflite_model_dir.name}' directory inside '/content'.")
 print(f"3. Right-click on 'model.bin' and 'class_names.json' and select 'Download'.")
-# if 'tfjs_target_dir' in locals(): # Check if tfjs_target_dir was defined
+
 # print(f"4. If you also converted to TFJS Layers format, navigate to '{tfjs_target_dir.name}' and download its contents.")
